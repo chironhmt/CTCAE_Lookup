@@ -20,7 +20,7 @@ test("typing shows matching cards and clearing returns to favorites", async () =
 
   await user.clear(input);
   expect(screen.getByRole("heading", { name: "Frequent adverse events" })).toBeInTheDocument();
-  expect(cardNames()).toHaveLength(12);
+  expect(cardNames()).toHaveLength(8);
 });
 
 test("a query without matches shows 'No results found'", async () => {

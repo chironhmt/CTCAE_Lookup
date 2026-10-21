@@ -90,18 +90,14 @@ describe("generated ctcae-v6.json", () => {
   test("every default favorite resolves to a v6.0 term", () => {
     const names = DEFAULT_FAVORITE_IDS.map((id) => json.terms.find((t) => t.id === id)?.term);
     expect(names).toEqual([
-      "Anemia",
       "Neutrophil count decreased",
       "Thrombocytopenia",
-      "White blood cell decreased",
-      "Febrile neutropenia",
+      "Anemia",
       "Nausea",
       "Vomiting",
       "Diarrhea",
-      "Mucositis oral",
-      "Fatigue",
-      "Peripheral sensory neuropathy",
       "Infusion related reaction",
+      "Peripheral sensory neuropathy",
     ]);
   });
 

@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("home -> search -> favorite -> reload -> persisted -> no results", async ({ page }) => {
   await page.goto("/");
   const cards = page.getByRole("article");
-  await expect(cards).toHaveCount(12);
+  await expect(cards).toHaveCount(8);
 
   const search = page.getByRole("combobox", { name: "Search adverse events" });
   await search.fill("nausea");
@@ -14,12 +14,12 @@ test("home -> search -> favorite -> reload -> persisted -> no results", async ({
   await page.getByRole("article", { name: "Alopecia" }).getByRole("button", { name: "Add to favorites" }).click();
 
   await page.reload();
-  await expect(cards).toHaveCount(13);
+  await expect(cards).toHaveCount(9);
   await expect(page.getByRole("article", { name: "Alopecia" })).toBeVisible();
 
   await page.getByRole("article", { name: "Nausea" }).getByRole("button", { name: "Remove from favorites" }).click();
   await page.reload();
-  await expect(cards).toHaveCount(12);
+  await expect(cards).toHaveCount(8);
   await expect(page.getByRole("article", { name: "Nausea" })).toHaveCount(0);
 
   await search.fill("zzzzqqq");

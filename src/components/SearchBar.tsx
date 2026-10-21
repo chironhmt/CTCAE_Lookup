@@ -98,7 +98,7 @@ export function SearchBar({ query, onQueryChange, suggestions, recent, onCommit,
         onClick={() => setOpen(true)}
         ref={inputRef}
         onKeyDown={onKeyDown}
-        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm placeholder:text-slate-500 focus:border-blue-600 focus:outline-2 focus:outline-blue-600"
+        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-1.5 text-base text-slate-900 shadow-sm placeholder:text-slate-500 focus:border-blue-600 focus:outline-2 focus:outline-blue-600"
       />
       {expanded && (
         <div className="absolute inset-x-0 top-full z-10 mt-1 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">

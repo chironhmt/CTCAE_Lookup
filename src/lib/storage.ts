@@ -1,5 +1,6 @@
 export const FAVORITES_KEY = "ctcae.favorites.v1";
 export const RECENT_KEY = "ctcae.recent.v1";
+export const FAVORITES_HIDDEN_KEY = "ctcae.favoritesHidden.v1";
 export const MAX_RECENT = 10;
 
 /** localStorage may be missing or throw (private mode, blocked site data). */
@@ -50,4 +51,12 @@ export function addRecent(recent: readonly string[], query: string): string[] {
 
 export function saveRecent(recent: readonly string[]): void {
   writeJson(RECENT_KEY, recent);
+}
+
+export function loadFavoritesHidden(): boolean {
+  return readJson(FAVORITES_HIDDEN_KEY) === true;
+}
+
+export function saveFavoritesHidden(hidden: boolean): void {
+  writeJson(FAVORITES_HIDDEN_KEY, hidden);
 }

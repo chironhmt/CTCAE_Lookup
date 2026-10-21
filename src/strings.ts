@@ -1,5 +1,5 @@
 export const strings = {
-  appTitle: "CTCAE Lookup",
+  appTitle: "CTCAE Lookup for Hematologist",
   appSubtitle: "Adverse event definitions and grades",
   searchLabel: "Search adverse events",
   searchPlaceholder: "Search adverse events, e.g. neutrophil, ANC, nausea",
@@ -9,6 +9,8 @@ export const strings = {
   favoritesHeading: "Frequent adverse events",
   favoritesEmpty: "No favorites yet. Search for an adverse event and select the star to add it here.",
   resetFavorites: "Reset to defaults",
+  hideFavorites: "Hide",
+  showFavorites: "Show",
   addFavorite: "Add to favorites",
   removeFavorite: "Remove from favorites",
   noResults: "No results found",
@@ -19,11 +21,10 @@ export const strings = {
   grade: (level: number) => `Grade ${level}`,
   notApplicable: "—",
   notApplicableLabel: "Not applicable",
-  sourceLabel: "Source:",
   sourceName: "CTCAE v6.0 (NCI)",
-  sourceCredit: "Content courtesy of the National Cancer Institute (NCI).",
-  sourceLinkText: "Original CTCAE files at NCI",
-  sourceUrl: "https://dctd.cancer.gov/research/ctep-trials/for-sites/adverse-events",
-  meddraVersion: (v: string) => `MedDRA v${v}`,
-  disclaimer: "For reference only. Refer to the official CTCAE document.",
+  sourceCredit: (meddraVersion: string) =>
+    `This tool is based on CTCAE v6.0 and MedDRA v${meddraVersion}, courtesy of the National Cancer Institute (NCI).`,
+  trademarkNotice:
+    "MedDRA® is a registered trademark of the International Council for Harmonisation (ICH). This tool is not affiliated with or endorsed by NCI or ICH.",
+  copyright: "© 2026 Myeloma Center, Eunpyeong St. Mary's Hospital. Released under the MIT License.",
 } as const;
