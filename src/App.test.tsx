@@ -29,7 +29,7 @@ test("first load shows the 8 default terms in order with definition and grades 1
 
 test("grades that do not apply show an em dash", async () => {
   render(<App />);
-  await userEvent.setup().type(screen.getByRole("combobox"), "febrile neutropenia");
+  await userEvent.setup().type(screen.getByRole("combobox", { name: "Search adverse events" }), "febrile neutropenia");
   // Febrile neutropenia has no Grade 1 or 2 in CTCAE v6.0.
   const fn = screen.getByRole("article", { name: "Febrile neutropenia" });
   // Grade 1 and 2 rows: a visible dash plus screen-reader text.

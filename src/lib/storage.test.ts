@@ -1,4 +1,15 @@
-import { addRecent, FAVORITES_KEY, loadFavorites, loadRecent, RECENT_KEY, saveFavorites, saveRecent } from "./storage";
+import {
+  addRecent,
+  FAVORITES_KEY,
+  loadFavorites,
+  loadRecent,
+  loadVersion,
+  RECENT_KEY,
+  saveFavorites,
+  saveRecent,
+  saveVersion,
+  VERSION_KEY,
+} from "./storage";
 
 const known = new Set(["a", "b", "c"]);
 const defaults = ["a", "b"];
@@ -64,4 +75,14 @@ test("recent searches: newest first, case-insensitive de-dup, max 10", () => {
 
   saveRecent(recent);
   expect(loadRecent()).toEqual(recent);
+});
+
+test("version round-trips and falls back when missing or no longer offered", () => {
+  const versions = ["6.0", "5.0"];
+  expect(loadVersion(versions, "6.0")).toBe("6.0");
+  saveVersion("5.0");
+  expect(JSON.parse(localStorage.getItem(VERSION_KEY)!)).toBe("5.0");
+  expect(loadVersion(versions, "6.0")).toBe("5.0");
+  localStorage.setItem(VERSION_KEY, JSON.stringify("4.03"));
+  expect(loadVersion(versions, "6.0")).toBe("6.0");
 });

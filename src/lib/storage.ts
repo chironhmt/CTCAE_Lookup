@@ -1,6 +1,7 @@
 export const FAVORITES_KEY = "ctcae.favorites.v1";
 export const RECENT_KEY = "ctcae.recent.v1";
 export const FAVORITES_HIDDEN_KEY = "ctcae.favoritesHidden.v1";
+export const VERSION_KEY = "ctcae.version.v1";
 export const MAX_RECENT = 10;
 
 /** localStorage may be missing or throw (private mode, blocked site data). */
@@ -59,4 +60,14 @@ export function loadFavoritesHidden(): boolean {
 
 export function saveFavoritesHidden(hidden: boolean): void {
   writeJson(FAVORITES_HIDDEN_KEY, hidden);
+}
+
+/** The saved CTCAE version if it is still offered, otherwise the fallback. */
+export function loadVersion<V extends string>(versions: readonly V[], fallback: V): V {
+  const saved = readJson(VERSION_KEY);
+  return versions.find((v) => v === saved) ?? fallback;
+}
+
+export function saveVersion(version: string): void {
+  writeJson(VERSION_KEY, version);
 }

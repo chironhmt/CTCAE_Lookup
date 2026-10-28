@@ -30,9 +30,24 @@ test("no horizontal scrolling at 360px width", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 800 });
   for (const query of ["", "Immune effector cell-associated neurotoxicity syndrome"]) {
     await page.goto("/");
-    if (query) await page.getByRole("combobox").fill(query);
+    if (query) await page.getByRole("combobox", { name: "Search adverse events" }).fill(query);
     await expect(page.getByRole("article").first()).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(0);
   }
+});
+
+test("CTCAE version menu switches to v5.0 and survives a reload", async ({ page }) => {
+  await page.goto("/");
+  const version = page.getByRole("combobox", { name: "CTCAE version" });
+  await expect(version).toHaveValue("6.0");
+  await expect(page.getByRole("article", { name: "Thrombocytopenia" })).toBeVisible();
+
+  await version.selectOption("5.0");
+  await expect(page.getByRole("article", { name: "Platelet count decreased" })).toBeVisible();
+  await expect(page.getByRole("contentinfo")).toContainText("CTCAE v5.0 and MedDRA v20.1");
+
+  await page.reload();
+  await expect(version).toHaveValue("5.0");
+  await expect(page.getByRole("article", { name: "Platelet count decreased" })).toBeVisible();
 });

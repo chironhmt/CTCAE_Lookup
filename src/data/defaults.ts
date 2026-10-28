@@ -1,7 +1,8 @@
 /**
  * MedDRA codes of the adverse events shown on the home screen by default.
  * Shown in this order. CTCAE v6.0 renamed the v5.0 term "Platelet count
- * decreased" to "Thrombocytopenia".
+ * decreased" to "Thrombocytopenia"; in v5.0 that favorite resolves to the old
+ * term through RENAMED in dataset.ts.
  */
 export const DEFAULT_FAVORITE_IDS: readonly string[] = [
   "10029366", // Neutrophil count decreased

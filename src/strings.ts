@@ -8,6 +8,8 @@ export const strings = {
   suggestions: "Suggestions",
   favoritesHeading: "Frequent adverse events",
   favoritesEmpty: "No favorites yet. Search for an adverse event and select the star to add it here.",
+  favoritesNotInVersion: (n: number, version: string) =>
+    `${n === 1 ? "1 favorite is" : `${n} favorites are`} not in CTCAE v${version} and ${n === 1 ? "is" : "are"} hidden.`,
   resetFavorites: "Reset to defaults",
   hideFavorites: "Hide",
   showFavorites: "Show",
@@ -21,9 +23,11 @@ export const strings = {
   grade: (level: number) => `Grade ${level}`,
   notApplicable: "—",
   notApplicableLabel: "Not applicable",
-  sourceName: "CTCAE v6.0 (NCI)",
-  sourceCredit: (meddraVersion: string) =>
-    `This tool is based on CTCAE v6.0 and MedDRA v${meddraVersion}, courtesy of the National Cancer Institute (NCI).`,
+  versionLabel: "CTCAE version",
+  versionName: (version: string) => `CTCAE v${version}`,
+  sourceOrg: "(NCI)",
+  sourceCredit: (version: string, meddraVersion: string) =>
+    `This tool is based on CTCAE v${version} and MedDRA v${meddraVersion}, courtesy of the National Cancer Institute (NCI).`,
   trademarkNotice:
     "MedDRA® is a registered trademark of the International Council for Harmonisation (ICH). This tool is not affiliated with or endorsed by NCI or ICH.",
   copyright: "© 2026 Myeloma Center, Eunpyeong St. Mary's Hospital. Released under the MIT License.",

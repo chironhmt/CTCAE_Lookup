@@ -21,7 +21,7 @@ test("star toggle has accessible add/remove labels", async () => {
 test("adding from search results shows the term on the home view; removing hides it", async () => {
   const user = userEvent.setup();
   render(<App />);
-  const input = screen.getByRole("combobox");
+  const input = screen.getByRole("combobox", { name: "Search adverse events" });
 
   await user.type(input, "alopecia");
   await user.click(within(card("Alopecia")).getByRole("button", { name: "Add to favorites" }));
@@ -90,6 +90,6 @@ test("favorite cards start with grades hidden and clicking the card shows them",
 test("search result cards still show grades immediately", async () => {
   const user = userEvent.setup();
   render(<App />);
-  await user.type(screen.getByRole("combobox"), "alopecia");
+  await user.type(screen.getByRole("combobox", { name: "Search adverse events" }), "alopecia");
   expect(within(card("Alopecia")).getByText("Grade 1")).toBeVisible();
 });

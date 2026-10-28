@@ -4,8 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  // The bundled CTCAE dataset (~430 KB JSON) puts the main chunk over Vite's 500 KB default.
-  build: { chunkSizeWarningLimit: 800 },
+  // The bundled CTCAE v6.0 and v5.0 datasets (~430 KB JSON each) put the main chunk over Vite's 500 KB default.
+  build: { chunkSizeWarningLimit: 1300 },
   test: {
     globals: true,
     environment: "jsdom",
